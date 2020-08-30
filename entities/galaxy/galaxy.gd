@@ -2,7 +2,7 @@ extends Spatial
 
 export(Vector3) var initial_position = Vector3.ZERO
 export(Vector3) var initial_velocity = Vector3.ZERO
-export(int) var particle_count = 200
+export(int) var particle_count = 300
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 

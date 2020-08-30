@@ -37,11 +37,3 @@ func handle_multiplier_input(_delta : float) -> void:
 	
 	get_tree().call_group("moving_bodies", "update_lf")
 
-
-func _on_res_and_pause_button_up() -> void:
-	Global.is_paused = not Global.is_paused
-
-
-func _on_galaxy_trail_toggled(button_pressed: bool) -> void:
-	var galaxy : Spatial = get_tree().current_scene.get_node("Galaxy")
-	galaxy.toggle_trail()

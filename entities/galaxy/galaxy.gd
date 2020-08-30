@@ -2,7 +2,7 @@ extends Spatial
 
 export(Vector3) var initial_position = Vector3.ZERO
 export(Vector3) var initial_velocity = Vector3.ZERO
-export(int) var particle_count = 5
+export(int) var particle_count = 200
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -19,6 +19,7 @@ var lf : Leapfrog
 
 var trail : Node
 
+onready var cm : KinematicBody = $CM
 onready var particle_container : Spatial = $Particles
 #onready var trails : Spatial = $ParticleTrails
 onready var trails : Spatial = get_tree().current_scene.get_node("ParticleTrails")
@@ -26,6 +27,8 @@ onready var trails : Spatial = get_tree().current_scene.get_node("ParticleTrails
 func _ready() -> void:
 	var f_ref : FuncRef = funcref(gal_pot, "force")
 	lf = Leapfrog.new(initial_position, initial_velocity, f_ref, Global.time_multiplier * Global.TIME_STEP)
+	
+	cm.translation = initial_position
 	
 	# Add a trail to the galaxy mesh
 	var _gal_trail : ImmediateGeometry = ResourceManager.trail.instance()
@@ -44,10 +47,15 @@ func _ready() -> void:
 		_particle.set_trail(_trail.get_path())
 
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("toggle_galaxy_trail"):
+		toggle_trail()
+
+
 func _physics_process(delta: float) -> void:	
 	if not Global.is_paused:
 		position = lf.next()
-		translation = position
+		cm.translation = position
 		
 		if trail:
 			trail.new_vertex(position)

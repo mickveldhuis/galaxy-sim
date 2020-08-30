@@ -14,13 +14,12 @@ onready var trail : ImmediateGeometry
 
 
 func _ready() -> void:	
-	var pos_init : Vector3 = _get_initial_position()
-	var vel_init : Vector3 = _get_initial_velocity(pos_init)
-#	var pos_init : Vector3 = _get_initial_position() + galaxy.initial_position
-#	var vel_init : Vector3 = _get_initial_velocity(pos_init) + galaxy.initial_velocity
+#	var pos_init : Vector3 = _get_initial_position()
+#	var vel_init : Vector3 = _get_initial_velocity(pos_init)
+	var pos_init : Vector3 = _get_initial_position() + galaxy.initial_position
+	var vel_init : Vector3 = _get_initial_velocity(pos_init) + galaxy.initial_velocity
 	var f_ref : FuncRef = funcref(galaxy.gal_pot, "force")
-	
-#	global_transform.origin = pos_init
+
 	translation = pos_init
 	
 	lf = Leapfrog.new(pos_init, vel_init, f_ref, Global.time_multiplier * Global.TIME_STEP)
@@ -29,7 +28,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not Global.is_paused:
 		var next_pos : Vector3 = lf.next()
-	#	global_transform.origin = next_pos
 		translation = next_pos
 		
 		if trail and trail.has_method("new_vertex"):

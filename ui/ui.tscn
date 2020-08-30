@@ -63,44 +63,145 @@ size_flags_vertical = 3
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -317.0
+margin_left = -300.0
+margin_right = -20.0
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MultiplierLabel" type="Label" parent="TopContainer/Panel/HBoxRight"]
+margin_left = 31.0
 margin_top = 10.0
-margin_right = 191.0
+margin_right = 280.0
 margin_bottom = 40.0
-text = "Time multiplier"
-
-[node name="SpinBox" type="SpinBox" parent="TopContainer/Panel/HBoxRight"]
-margin_left = 195.0
-margin_right = 317.0
-margin_bottom = 50.0
-grow_vertical = 2
-min_value = 1.0
-value = 10.0
+text = "Time multiplier: %s"
 align = 1
 
-[node name="HBoxLeft" type="HBoxContainer" parent="TopContainer/Panel"]
-anchor_bottom = 1.0
+[node name="HelpContainer" type="MarginContainer" parent="."]
+anchor_left = 0.1
+anchor_top = 0.3
+anchor_right = 0.9
+anchor_bottom = 0.3
+rect_scale = Vector2( 0.998677, 1 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ResumePause" type="Button" parent="TopContainer/Panel/HBoxLeft"]
-margin_right = 212.0
-margin_bottom = 50.0
-text = "Resume/Pause"
+[node name="PanelContainer" type="PanelContainer" parent="HelpContainer"]
+margin_right = 1010.0
+margin_bottom = 234.0
 
-[node name="GalaxyTrailToggle" type="Button" parent="TopContainer/Panel/HBoxLeft"]
-margin_left = 216.0
-margin_right = 482.0
-margin_bottom = 50.0
-toggle_mode = true
-text = "Toggle Galaxy Trail"
-[connection signal="value_changed" from="TopContainer/Panel/HBoxRight/SpinBox" to="." method="_on_spinbox_value_changed"]
-[connection signal="button_up" from="TopContainer/Panel/HBoxLeft/ResumePause" to="." method="_on_res_and_pause_button_up"]
-[connection signal="toggled" from="TopContainer/Panel/HBoxLeft/GalaxyTrailToggle" to="." method="_on_galaxy_trail_toggled"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HelpContainer/PanelContainer"]
+margin_right = 1010.0
+margin_bottom = 234.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelContainer" type="HBoxContainer" parent="HelpContainer/PanelContainer/VBoxContainer"]
+margin_right = 1010.0
+margin_bottom = 30.0
+alignment = 1
+
+[node name="MultiplierControls" type="Label" parent="HelpContainer/PanelContainer/VBoxContainer/LabelContainer"]
+margin_left = 134.0
+margin_right = 875.0
+margin_bottom = 30.0
+text = "Arrows UP/DOWN: increase/decrease the time multiplier"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelContainer2" type="HBoxContainer" parent="HelpContainer/PanelContainer/VBoxContainer"]
+margin_top = 34.0
+margin_right = 1010.0
+margin_bottom = 64.0
+alignment = 1
+
+[node name="MultiplierControlsSlow" type="Label" parent="HelpContainer/PanelContainer/VBoxContainer/LabelContainer2"]
+margin_right = 1010.0
+margin_bottom = 30.0
+text = "Arrows LEFT/RIGHT: increase/decrease the time multiplier in increments of 1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelContainer3" type="HBoxContainer" parent="HelpContainer/PanelContainer/VBoxContainer"]
+margin_top = 68.0
+margin_right = 1010.0
+margin_bottom = 98.0
+alignment = 1
+
+[node name="CameraControls" type="Label" parent="HelpContainer/PanelContainer/VBoxContainer/LabelContainer3"]
+margin_left = 204.0
+margin_right = 806.0
+margin_bottom = 30.0
+text = "W/A/S/D: rotate the camera around the origin"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelContainer4" type="HBoxContainer" parent="HelpContainer/PanelContainer/VBoxContainer"]
+margin_top = 102.0
+margin_right = 1010.0
+margin_bottom = 132.0
+alignment = 1
+
+[node name="CameraZooming" type="Label" parent="HelpContainer/PanelContainer/VBoxContainer/LabelContainer4"]
+margin_left = 318.0
+margin_right = 692.0
+margin_bottom = 30.0
+text = "Mouse Wheel: zoom in & out"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelContainer5" type="HBoxContainer" parent="HelpContainer/PanelContainer/VBoxContainer"]
+margin_top = 136.0
+margin_right = 1010.0
+margin_bottom = 166.0
+alignment = 1
+
+[node name="ToggleTrail" type="Label" parent="HelpContainer/PanelContainer/VBoxContainer/LabelContainer5"]
+margin_left = 161.0
+margin_right = 848.0
+margin_bottom = 30.0
+text = "T: toggle the trail of the center of mass of the galaxy"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelContainer6" type="HBoxContainer" parent="HelpContainer/PanelContainer/VBoxContainer"]
+margin_top = 170.0
+margin_right = 1010.0
+margin_bottom = 200.0
+alignment = 1
+
+[node name="Pause" type="Label" parent="HelpContainer/PanelContainer/VBoxContainer/LabelContainer6"]
+margin_left = 306.0
+margin_right = 704.0
+margin_bottom = 30.0
+text = "ESCAPE: pause the simulation"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelContainer7" type="HBoxContainer" parent="HelpContainer/PanelContainer/VBoxContainer"]
+modulate = Color( 1, 0.509804, 0.509804, 1 )
+margin_top = 204.0
+margin_right = 1010.0
+margin_bottom = 234.0
+alignment = 1
+
+[node name="HelpMenu" type="Label" parent="HelpContainer/PanelContainer/VBoxContainer/LabelContainer7"]
+margin_left = 351.0
+margin_right = 659.0
+margin_bottom = 30.0
+text = "/: toggle this help panel"
+__meta__ = {
+"_edit_use_anchors_": false
+}

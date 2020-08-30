@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://entities/particles/particle.gd" type="Script" id=1]
+
+[sub_resource type="SphereShape" id=1]
+margin = 0.05
+radius = 0.1
+
+[sub_resource type="SphereMesh" id=2]
+radius = 0.05
+height = 0.1
+
+[sub_resource type="SpatialMaterial" id=3]
+metallic = 0.48
+
+[node name="Particle" type="KinematicBody" groups=[
+"moving_bodies",
+"particles",
+]]
+script = ExtResource( 1 )
+vel_mean = 0.05
+vel_error = 0.1
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="Mesh" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00612783, 0, -0.000573874 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )

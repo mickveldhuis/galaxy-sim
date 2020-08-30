@@ -1,0 +1,106 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/ui.gd" type="Script" id=2]
+
+[node name="UI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BottomContainer" type="MarginContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="BottomContainer"]
+margin_right = 1024.0
+margin_bottom = 100.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomContainer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -0.840881
+margin_bottom = -0.840881
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PausedLabel" type="Label" parent="BottomContainer/Panel/HBoxContainer"]
+margin_left = 334.0
+margin_top = 35.0
+margin_right = 690.0
+margin_bottom = 65.0
+text = "Press ESCAPE to unpause!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+margin_bottom = 50.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="TopContainer"]
+margin_right = 1024.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxRight" type="HBoxContainer" parent="TopContainer/Panel"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -317.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MultiplierLabel" type="Label" parent="TopContainer/Panel/HBoxRight"]
+margin_top = 10.0
+margin_right = 191.0
+margin_bottom = 40.0
+text = "Time multiplier"
+
+[node name="SpinBox" type="SpinBox" parent="TopContainer/Panel/HBoxRight"]
+margin_left = 195.0
+margin_right = 317.0
+margin_bottom = 50.0
+grow_vertical = 2
+min_value = 1.0
+value = 10.0
+align = 1
+
+[node name="HBoxLeft" type="HBoxContainer" parent="TopContainer/Panel"]
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResumePause" type="Button" parent="TopContainer/Panel/HBoxLeft"]
+margin_right = 212.0
+margin_bottom = 50.0
+text = "Resume/Pause"
+
+[node name="GalaxyTrailToggle" type="Button" parent="TopContainer/Panel/HBoxLeft"]
+margin_left = 216.0
+margin_right = 482.0
+margin_bottom = 50.0
+toggle_mode = true
+text = "Toggle Galaxy Trail"
+[connection signal="value_changed" from="TopContainer/Panel/HBoxRight/SpinBox" to="." method="_on_spinbox_value_changed"]
+[connection signal="button_up" from="TopContainer/Panel/HBoxLeft/ResumePause" to="." method="_on_res_and_pause_button_up"]
+[connection signal="toggled" from="TopContainer/Panel/HBoxLeft/GalaxyTrailToggle" to="." method="_on_galaxy_trail_toggled"]
